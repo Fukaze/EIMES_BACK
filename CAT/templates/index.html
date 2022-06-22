@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Home de Catalogo EIMES</h1>
+  <p>Welcome to EIMES-CAT, a website developed by <em>Javalog</em>!</p>
+  <h2>Contenido Dinámico</h2>
+  <p>El catálogo tiene las siguientes estadísticas:</p>
+  <ul>
+    <li><strong>Marcas:</strong> {{ num_marcas }}</li>
+    <li><strong>Equipos:</strong> {{ num_instances }}</li>
+    <li><strong>Equipos Electricos:</strong> {{ num_instances_electrico }}</li>
+    <li><strong>Equipos marca Omicron:</strong> {{ num_instances_omicron }}</li>
+    <li><strong>Modelos:</strong> {{ num_modelos }}</li>
+    <li><button type="button">Agrega marca!</button></li>
+</ul>
+{% endblock %}
