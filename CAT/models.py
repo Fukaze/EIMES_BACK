@@ -4,6 +4,7 @@ from sys import maxsize
 from unicodedata import name
 from django.db import models
 from django.forms import CharField, FileField
+from django.urls import reverse
 
 # Create your models here.
 
@@ -23,6 +24,10 @@ class Modelo(models.Model):
     
     def __str__(self):
         return self.nombre
+
+    def get_absolute_url(self):
+    
+        return reverse('detalle-equipo',args=[str(self.id)])
 
 class Equipo_instance(models.Model):
     modelo = models.ForeignKey('Modelo', on_delete=models.RESTRICT,help_text='Representación Equipo Real')

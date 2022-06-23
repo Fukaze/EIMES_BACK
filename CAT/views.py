@@ -11,6 +11,9 @@
 from django.shortcuts import render
 #IMPORTA MODELOS PARA ACCEDER A ELLOS A LEER O SACAR INFO
 from .models import Marca,Modelo, Equipo_instance, Certificado
+
+from django.views import generic
+
 # Create your views here.
 
 def index(request):
@@ -30,10 +33,28 @@ def index(request):
         'num_instances_omicron': num_instances_omicron,
         'num_modelos': num_modelos,
     }
-    graba_Marca()
+   # graba_Marca()
     return render(request, 'index.html', context=context)
 
 def graba_Marca():
     record = Marca(nombre='DELTA REC')
     record.save()
     pass
+
+class ListaModelosView(generic.ListView):
+    model = Modelo
+    context_object_name = 'modelos'
+    
+    #   context_object_name = 'book_list'   # your own name for the list as a template variable
+    #   queryset = Book.objects.filter(title__icontains='war')[:5] # Get 5 books containing the title war
+    #   template_name = 'books/my_arbitrary_template_name_list.html'  # Specify your own template name/location
+
+
+class DetalleEquiposView(generic.DetailView):
+    model = Equipo_instance
+    context_object_name = 'detalle-equipo'
+    queryset = Equipo_instance.objects.filter(tipo = 'e')
+    template_name = 'CAT/DetalleEquipo.html'
+    #   context_object_name = 'book_list'   # your own name for the list as a template variable
+    #   queryset = Book.objects.filter(title__icontains='war')[:5] # Get 5 books containing the title war
+    #   template_name = 'books/my_arbitrary_template_name_list.html'  # Specify your own template name/location

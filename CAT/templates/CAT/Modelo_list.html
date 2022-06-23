@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Lista de Modelos</h1>
+  {% if modelos%} 
+  <ul>
+    {% for equipo in modelos %}
+      <li>
+        <a href="{{ equipo.get_absolute_url }}">{{equipo.nombre}}</a>: {{equipo.marca}} {{equipo.descricion}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>No hay equipos en el catálogo.</p>
+  {% endif %}
+{% endblock %}
